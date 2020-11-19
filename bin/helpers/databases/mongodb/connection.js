@@ -2,7 +2,7 @@ const mongoose = require('mongoose');
 require('dotenv/config');
 
 mongoose.Promise = global.Promise;
-mongoose.connect(process.env.DB_CONNECTION,
+mongoose.connect(process.env.MONGO_DATABASE_URL,
   {
     useNewUrlParser: true,
     useCreateIndex: true,

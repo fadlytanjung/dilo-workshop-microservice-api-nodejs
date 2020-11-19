@@ -1,7 +1,7 @@
 const restify = require('restify');
 const corsMiddleware = require('restify-cors-middleware');
 const project = require('../../package.json');
-const productHandler = require('../modules/product/handlers/api_handler');
+const productHandler= require('../modules/product/controllers');
 
 function AppServer() {
   this.server = restify.createServer({
@@ -36,7 +36,9 @@ function AppServer() {
   });
 
   // authenticated client can access the end point, place code bellow
-  this.server.get('/product/v1', productHandler.getProduct);
+  this.server.get('/product/v1/:productId', productHandler.getProduct);
+  this.server.get('/product/v1', productHandler.listProduct);
+  this.server.post('/product/v1', productHandler.createProduct);
   // this.server.post('/api/users/v1', basicAuth.isAuthenticated, userHandler.postDataLogin);
   // this.server.get('/api/users/v1', jwtAuth.verifyToken, userHandler.getUser);
   // this.server.post('/api/users/v1/register', basicAuth.isAuthenticated, userHandler.registerUser);

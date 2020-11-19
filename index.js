@@ -1,4 +1,5 @@
 require('dotenv/config');
+require('./bin/helpers/databases/mongodb/connection');
 const AppServer = require('./bin/app/server');
 const appServer = new AppServer();
 const port = process.env.PORT || 5000;
