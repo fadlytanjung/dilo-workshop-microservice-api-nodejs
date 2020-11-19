@@ -39,6 +39,8 @@ function AppServer() {
   this.server.get('/product/v1/:productId', productHandler.getProduct);
   this.server.get('/product/v1', productHandler.listProduct);
   this.server.post('/product/v1', productHandler.createProduct);
+  this.server.put('/product/v1/:productId', productHandler.updateProduct);
+  this.server.del('/product/v1/:productId', productHandler.deleteProduct);
   // this.server.post('/api/users/v1', basicAuth.isAuthenticated, userHandler.postDataLogin);
   // this.server.get('/api/users/v1', jwtAuth.verifyToken, userHandler.getUser);
   // this.server.post('/api/users/v1/register', basicAuth.isAuthenticated, userHandler.registerUser);

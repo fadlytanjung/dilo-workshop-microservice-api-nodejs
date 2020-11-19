@@ -8,8 +8,25 @@ const productSchema = mongoose.Schema({
   productName: {
     type: String,
     minlength: 3,
-    trim: true,
     required: [true, 'productName required'],
+  },
+  price: {
+    type: Number,
+    required: [true, 'price required']
+  },
+  brand: {
+    type: String,
+    default: "unknown"
+  },
+  productDescription: {
+    type: String,
+    default: "",
+  },
+  createdAt: {
+    type: Date
+  },
+  modifiedAt: {
+    type: Date
   }
 });
 
