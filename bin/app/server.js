@@ -1,5 +1,6 @@
 const restify = require('restify');
 const corsMiddleware = require('restify-cors-middleware');
+const jwtAuth = require('../auth/jwt_auth_helper');
 const project = require('../../package.json');
 const productHandler= require('../modules/product/controllers');
 
@@ -36,11 +37,11 @@ function AppServer() {
   });
 
   // authenticated client can access the end point, place code bellow
-  this.server.get('/product/v1/:productId', productHandler.getProduct);
-  this.server.get('/product/v1', productHandler.listProduct);
-  this.server.post('/product/v1', productHandler.createProduct);
-  this.server.put('/product/v1/:productId', productHandler.updateProduct);
-  this.server.del('/product/v1/:productId', productHandler.deleteProduct);
+  this.server.get('/product/v1/:productId', jwtAuth.verifyToken, productHandler.getProduct);
+  this.server.get('/product/v1', jwtAuth.verifyToken, productHandler.listProduct);
+  this.server.post('/product/v1', jwtAuth.verifyToken, productHandler.createProduct);
+  this.server.put('/product/v1/:productId', jwtAuth.verifyToken, productHandler.updateProduct);
+  this.server.del('/product/v1/:productId', jwtAuth.verifyToken, productHandler.deleteProduct);
   // this.server.post('/api/users/v1', basicAuth.isAuthenticated, userHandler.postDataLogin);
   // this.server.get('/api/users/v1', jwtAuth.verifyToken, userHandler.getUser);
   // this.server.post('/api/users/v1/register', basicAuth.isAuthenticated, userHandler.registerUser);
